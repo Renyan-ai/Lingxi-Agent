@@ -376,3 +376,27 @@ class CodingAgent:
                             "tool_id": tool_id
                         }
                         
+                        tool_results.append({
+                            "type": "tool_result",
+                            "tool_use_id": tool_id,
+                            "content": str(result)
+                        })
+                
+                if tool_results:
+                    self.messages.append({
+                        "role": "user",
+                        "content": tool_results
+                    })
+                
+                continue
+        
+        if iteration >= max_iterations:
+            yield {"type": "error", "content": "达到最大迭代次数"}
+    
+    def get_history(self) -> List[Dict]:
+        """获取对话历史"""
+        return self.messages
+    
+    def clear_history(self):
+        """清空对话历史"""
+        self.messages = []
