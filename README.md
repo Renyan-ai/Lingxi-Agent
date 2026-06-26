@@ -123,12 +123,11 @@ docker-compose up -d
 
 # 5. 打开浏览器访问
 open http://localhost:8000
+```
 
 
 ### 方式二: 手动部署
-
 ```bash
-
 # 1. 克隆项目
 git clone https://github.com/yourusername/lingxi-agent.git
 cd lingxi-agent
