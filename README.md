@@ -105,7 +105,7 @@
 
 ## 🚀 快速开始
 
-### Docker 部署
+### 方式一: Docker 部署
 
 ```bash
 # 1. 克隆项目
@@ -122,4 +122,37 @@ vim .env
 docker-compose up -d
 
 # 5. 打开浏览器访问
+open http://localhost:8000
+
+
+### 方式二: 手动部署
+
+```bash
+
+# 1. 克隆项目
+git clone https://github.com/yourusername/lingxi-agent.git
+cd lingxi-agent
+
+# 2. 创建虚拟环境
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 3. 安装依赖
+pip install -r requirements.txt
+
+# 4. 配置环境变量
+cp .env.example .env
+vim .env  # 填入你的配置
+
+# 5. 初始化数据库
+python -c "
+import asyncio
+from src.database.session import init_db
+asyncio.run(init_db())
+"
+
+# 6. 启动服务
+python src/main.py
+
+# 7. 访问
 open http://localhost:8000
